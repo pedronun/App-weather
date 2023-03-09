@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, StatusBar } from "react-native";
+import { useFonts } from "expo-font";
+import { Routes } from "./src/routes/routes";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    "SFPro-Regular": require("./src/assets/fonts/SF-Pro-Text-Bold.otf"),
+    "SFPro-Semibold": require("./src/assets/fonts/SF-Pro-Text-Semibold.otf"),
+    "SFPro-Bold": require("./src/assets/fonts/SF-Pro-Text-Bold.otf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      <Routes />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
