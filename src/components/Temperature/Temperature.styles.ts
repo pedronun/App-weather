@@ -1,10 +1,20 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+interface IContainerProps {
+  openBottomModal?: boolean;
+}
+
+export const Container = styled.View<IContainerProps>`
   align-items: center;
   justify-content: center;
   margin-bottom: 23px;
   min-height: 200px;
+
+  ${({ openBottomModal }) =>
+    openBottomModal &&
+    `
+    justify-content: flex-start;
+  `}
 `;
 
 export const City = styled.Text`

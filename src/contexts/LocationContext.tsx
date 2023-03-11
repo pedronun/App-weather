@@ -4,6 +4,7 @@ import * as Location from "expo-location";
 import api from "../services/api";
 import { API_KEY, API_UNITS, API_URL } from "@env";
 import { ISearchLocation } from "../global/searchLocation";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface ILocationContextProviderProps {
   children: React.ReactNode;
@@ -38,12 +39,20 @@ const LocationContextProvider: React.FC<ILocationContextProviderProps> = ({
         return;
       }
 
+      const value = await AsyncStorage.getItem('@weather:location')
+
+      if (value) {
+        setSearchLocation(JSON.parse(value))
+        return
+      }
+
       const location = await Location.getCurrentPositionAsync({});
       const { latitude, longitude } = location.coords;
       const { data } = await api.get(
         `${API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=${API_UNITS}`
       );
 
+      await AsyncStorage.setItem("@weather:location", JSON.stringify(data));
       setCurrentLocation(location);
       setSearchLocation(data);
     };

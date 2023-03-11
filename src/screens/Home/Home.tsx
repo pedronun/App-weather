@@ -6,11 +6,13 @@ import React from 'react';
 import BottomModal from '../../components/BottomModal/BottomModal';
 
 const Home = () => {
+  const [openBottomModal, setOpenBottomModal] = React.useState(false);
+
   return (
     <Container source={require('../../assets/img/home-background.png')}>
-      <Temperature />
+      <Temperature openBottomModal={openBottomModal} />
       <Image source={require('../../assets/img/house.png')} />
-      <BottomModal />
+      <BottomModal setOpenBottomModal={setOpenBottomModal} />
     </Container>
   );
 };

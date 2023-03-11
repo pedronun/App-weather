@@ -6,7 +6,7 @@ import { HomeIcon, ListIcon, MapIcon } from "../Icon";
 function CustomTabBar({ state: { routes }, navigation }: BottomTabBarProps) {
   return (
     <ImageBackground
-      source={require("../../assets/img/bottom-bar-background-test.png")}
+      source={require("../../assets/img/bottom-bar-background.png")}
       style={{
         width: "100%",
         height: 88,
