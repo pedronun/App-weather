@@ -7,7 +7,7 @@ import {
   MinMaxTemp,
   MinTemp,
   Temp,
-  Weather
+  Weather,
 } from "./Temperature.styles";
 
 interface TemperatureProps {
@@ -33,11 +33,15 @@ const Temperature: React.FC<TemperatureProps> = ({ openBottomModal }) => {
         <>
           <City>{searchLocation?.name}</City>
           <Temp>{searchLocation?.main?.temp.toFixed(0)}°</Temp>
-          <View>
+          <View
+            style={{
+              minWidth: 120,
+            }}
+          >
             <Weather>{searchLocation?.weather[0]?.description}</Weather>
             <MinMaxTemp>
-              <MinTemp>H:{searchLocation?.main?.temp_min.toFixed(0)}°</MinTemp>
-              <MaxTemp>L:{searchLocation?.main?.temp_max.toFixed(0)}°</MaxTemp>
+              <MaxTemp>H:{searchLocation?.main?.temp_max.toFixed(0)}°</MaxTemp>
+              <MinTemp>L:{searchLocation?.main?.temp_min.toFixed(0)}°</MinTemp>
             </MinMaxTemp>
           </View>
         </>

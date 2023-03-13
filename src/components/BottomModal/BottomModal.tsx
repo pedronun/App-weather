@@ -2,6 +2,7 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import React, { useMemo, useRef } from "react";
 import { FlatList, View } from "react-native";
 import { useLocation } from "../../contexts/LocationContext";
+import { AirQuality, FeelsHumidity, UvSunrise, VisibilityPressure, WindRainfall } from "../Icon";
 import {
   Container,
   Temp,
@@ -18,7 +19,7 @@ interface BottomModalProps {
 
 const BottomModal: React.FC<BottomModalProps> = ({ setOpenBottomModal }) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ["22%", "40%", "75%"], []);
+  const snapPoints = useMemo(() => ["37%", "75%"], []);
   const { searchLocation } = useLocation();
 
   return (
@@ -30,11 +31,13 @@ const BottomModal: React.FC<BottomModalProps> = ({ setOpenBottomModal }) => {
       backgroundComponent={(props) => <BottomSheetBackground {...props} />}
       handleIndicatorStyle={{ backgroundColor: "rgba(0, 0, 0, 0.3)", width: 48, height: 5, borderRadius: 10, marginTop: 10 }}
       onChange={(index) => {
-        if (index === 2) {
+        if (index === 1) {
           setOpenBottomModal(true);
-        } else {
-          setOpenBottomModal(false);
+          return;
         }
+        
+        setOpenBottomModal(false);
+        return;
       }}
     >
       <Container>
@@ -71,6 +74,11 @@ const BottomModal: React.FC<BottomModalProps> = ({ setOpenBottomModal }) => {
             </Temp>
           )}
         />
+        <AirQuality />
+        <UvSunrise />
+        <WindRainfall />
+        <FeelsHumidity />
+        <VisibilityPressure />
       </Container>
     </BottomSheet>
   );

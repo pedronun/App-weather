@@ -1,3 +1,9 @@
 export { default as HomeIcon } from './SvgHomeIcon';
 export { default as ListIcon } from './SvgListIcon';
 export { default as MapIcon } from './SvgMapIcon';
+export { default as AirQuality } from './SvgAirQuality';
+export { default as UvSunrise } from './SvgUvSunrise';
+export { default as WindRainfall } from './SvgWindRainfall';
+export { default as FeelsHumidity } from './SvgFeelsHumidity';
+export { default as VisibilityPressure } from './SvgVisibilityPressure';
+export { default as ChevronLeft } from './SvgChevronLeft';
